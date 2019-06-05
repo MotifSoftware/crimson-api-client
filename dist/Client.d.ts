@@ -4,7 +4,9 @@ export declare const headers: {
 };
 export default class Client {
     private endpoint;
-    constructor(endpoint: string);
+    private auth;
+    constructor(endpoint: string, auth: string | null);
+    formatQuery(queryString?: {}): string;
     url(path: string, queryString?: {}): string;
     parseResponse<T>(response: Response): Promise<T>;
     get<T>(path: string, queryString?: {}): Promise<T>;

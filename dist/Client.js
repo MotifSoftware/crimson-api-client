@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -45,12 +56,18 @@ exports.headers = {
     'Content-Type': 'application/json',
 };
 var Client = /** @class */ (function () {
-    function Client(endpoint) {
+    function Client(endpoint, auth) {
         this.endpoint = endpoint;
+        this.auth = auth;
     }
+    Client.prototype.formatQuery = function (queryString) {
+        if (queryString === void 0) { queryString = {}; }
+        var authQuery = this.auth ? { auth: this.auth } : {};
+        return querystring_1.default.stringify(__assign({}, authQuery, queryString));
+    };
     Client.prototype.url = function (path, queryString) {
         var url = "" + this.endpoint + path;
-        var query = queryString ? querystring_1.default.stringify(queryString) : '';
+        var query = this.formatQuery(queryString);
         return [url, query].filter(function (x) { return x; }).join('?');
     };
     Client.prototype.parseResponse = function (response) {

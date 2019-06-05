@@ -70,7 +70,7 @@ var ContentAPI = /** @class */ (function () {
             });
         });
     };
-    ContentAPI.prototype.delete = function (documentType, batchId) {
+    ContentAPI.prototype.deleteBatch = function (documentType, batchId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -78,6 +78,23 @@ var ContentAPI = /** @class */ (function () {
                             queryString: {
                                 documentType: documentType,
                                 batchId: batchId,
+                            },
+                        })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ContentAPI.prototype.deleteDocument = function (documentType, url) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.client.post('/content/delete', {
+                            queryString: {
+                                documentType: documentType,
+                                url: url,
                             },
                         })];
                     case 1:

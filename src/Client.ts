@@ -8,14 +8,22 @@ export const headers = {
 
 export default class Client {
   private endpoint: string;
+  private auth: string | null;
 
-  constructor(endpoint: string) {
+  constructor(endpoint: string, auth: string | null) {
     this.endpoint = endpoint;
+    this.auth = auth;
+  }
+
+  formatQuery(queryString: {} = {}): string {
+    const authQuery = this.auth ? { auth: this.auth } : {};
+
+    return querystring.stringify({ ...authQuery, ...queryString });
   }
 
   url(path: string, queryString?: {}): string {
     const url = `${this.endpoint}${path}`;
-    const query = queryString ? querystring.stringify(queryString) : '';
+    const query = this.formatQuery(queryString);
 
     return [url, query].filter(x => x).join('?');
   }

@@ -23,11 +23,20 @@ export default class ContentAPI {
     });
   }
 
-  async delete(documentType: number, batchId?: string): Promise<void> {
+  async deleteBatch(documentType: number, batchId: string): Promise<void> {
     await this.client.post('/content/delete', {
       queryString: {
         documentType,
         batchId,
+      },
+    });
+  }
+
+  async deleteDocument(documentType: number, url: string): Promise<void> {
+    await this.client.post('/content/delete', {
+      queryString: {
+        documentType,
+        url,
       },
     });
   }

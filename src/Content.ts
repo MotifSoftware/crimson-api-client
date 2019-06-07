@@ -28,7 +28,7 @@ export default class ContentAPI {
   }
 
   async upload(documentType: number, batchId: string, items: Content[]): Promise<UploadResponse> {
-    return await this.client.post('/content/upload', {
+    const response: UploadResponse = await this.client.post('/content/upload', {
       queryString: {
         documentType,
         batchId,
@@ -40,6 +40,8 @@ export default class ContentAPI {
         })),
       },
     });
+
+    return response;
   }
 
   async deleteBatch(documentType: number, batchId: string): Promise<void> {

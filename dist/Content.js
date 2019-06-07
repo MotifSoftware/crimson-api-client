@@ -52,6 +52,7 @@ var ContentAPI = /** @class */ (function () {
     }
     ContentAPI.prototype.upload = function (documentType, batchId, items) {
         return __awaiter(this, void 0, void 0, function () {
+            var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.client.post('/content/upload', {
@@ -63,7 +64,9 @@ var ContentAPI = /** @class */ (function () {
                                 items: items.map(function (item) { return (__assign({}, item, { date: item.date.toISOString() })); }),
                             },
                         })];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response];
                 }
             });
         });

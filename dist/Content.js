@@ -78,7 +78,7 @@ var ContentAPI = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.post('/content/delete', {
                             queryString: {
                                 documentType: documentType,
-                                batchId: batchId,
+                                batch: batchId,
                             },
                             body: {},
                         })];

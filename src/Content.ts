@@ -48,7 +48,7 @@ export default class ContentAPI {
     await this.client.post('/content/delete', {
       queryString: {
         documentType,
-        batchId,
+        batch: batchId,
       },
       body: {},
     });

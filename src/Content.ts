@@ -1,6 +1,25 @@
 import Client from "./Client";
 import { Content } from "./types";
 
+export type SuccessUploadResponse = {
+  batchId: string,
+  uploadCount: number,
+  status: 'success',
+};
+
+export type ErrorUploadResponse = {
+  errors: [{
+    document: Content,
+    error: string,
+  }],
+  totalDocs: number,
+  errorDocs: number,
+  message: string,
+  status: 'error',
+};
+
+export type UploadResponse = SuccessUploadResponse | ErrorUploadResponse;
+
 export default class ContentAPI {
   private client: Client;
 
@@ -8,8 +27,8 @@ export default class ContentAPI {
     this.client = client;
   }
 
-  async upload(documentType: number, batchId: string, items: Content[]): Promise<void> {
-    await this.client.post('/content/upload', {
+  async upload(documentType: number, batchId: string, items: Content[]): Promise<UploadResponse> {
+    return await this.client.post('/content/upload', {
       queryString: {
         documentType,
         batchId,
@@ -29,6 +48,7 @@ export default class ContentAPI {
         documentType,
         batchId,
       },
+      body: {},
     });
   }
 
@@ -36,7 +56,11 @@ export default class ContentAPI {
     await this.client.post('/content/delete', {
       queryString: {
         documentType,
-        url,
+      },
+      body: {
+        items: [{
+          url,
+        }]
       },
     });
   }

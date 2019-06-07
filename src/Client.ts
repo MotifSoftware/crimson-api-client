@@ -52,6 +52,9 @@ export default class Client {
     queryString?: {},
     body?: {}
   }={}) {
+    console.log('POST ', this.url(path, queryString));
+    console.log(body ? JSON.stringify(body) : undefined);
+
     const response = await fetch(this.url(path, queryString), {
       headers,
       method: 'post',

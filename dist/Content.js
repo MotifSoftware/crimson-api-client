@@ -63,9 +63,7 @@ var ContentAPI = /** @class */ (function () {
                                 items: items.map(function (item) { return (__assign({}, item, { date: item.date.toISOString() })); }),
                             },
                         })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
@@ -79,6 +77,7 @@ var ContentAPI = /** @class */ (function () {
                                 documentType: documentType,
                                 batchId: batchId,
                             },
+                            body: {},
                         })];
                     case 1:
                         _a.sent();
@@ -94,7 +93,11 @@ var ContentAPI = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.post('/content/delete', {
                             queryString: {
                                 documentType: documentType,
-                                url: url,
+                            },
+                            body: {
+                                items: [{
+                                        url: url,
+                                    }]
                             },
                         })];
                     case 1:

@@ -37,13 +37,20 @@ export default class Client {
   }
 
   async get<T>(path: string, queryString?: {}) {
-    const response = await fetch(this.url(path, queryString), { headers });
+    const response = await fetch(this.url(path, queryString), {
+      credentials: 'include',
+      headers,
+    });
 
     return await this.parseResponse<T>(response);
   }
 
   async delete<T>(path: string, queryString?: {}) {
-    const response = await fetch(this.url(path, queryString), { method: 'delete', headers });
+    const response = await fetch(this.url(path, queryString), {
+      credentials: 'include',
+      method: 'delete',
+      headers,
+    });
 
     return await this.parseResponse<T>(response);
   }
@@ -52,11 +59,9 @@ export default class Client {
     queryString?: {},
     body?: {}
   }={}) {
-    console.log('POST ', this.url(path, queryString));
-    console.log(body ? JSON.stringify(body) : undefined);
-
     const response = await fetch(this.url(path, queryString), {
       headers,
+      credentials: 'include',
       method: 'post',
       body: body ? JSON.stringify(body) : undefined,
     });

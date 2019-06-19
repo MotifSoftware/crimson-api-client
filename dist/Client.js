@@ -93,7 +93,10 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, isomorphic_fetch_1.default(this.url(path, queryString), { headers: exports.headers })];
+                    case 0: return [4 /*yield*/, isomorphic_fetch_1.default(this.url(path, queryString), {
+                            credentials: 'include',
+                            headers: exports.headers,
+                        })];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, this.parseResponse(response)];
@@ -107,7 +110,11 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, isomorphic_fetch_1.default(this.url(path, queryString), { method: 'delete', headers: exports.headers })];
+                    case 0: return [4 /*yield*/, isomorphic_fetch_1.default(this.url(path, queryString), {
+                            credentials: 'include',
+                            method: 'delete',
+                            headers: exports.headers,
+                        })];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, this.parseResponse(response)];
@@ -122,14 +129,12 @@ var Client = /** @class */ (function () {
             var response;
             return __generator(this, function (_c) {
                 switch (_c.label) {
-                    case 0:
-                        console.log('POST ', this.url(path, queryString));
-                        console.log(body ? JSON.stringify(body) : undefined);
-                        return [4 /*yield*/, isomorphic_fetch_1.default(this.url(path, queryString), {
-                                headers: exports.headers,
-                                method: 'post',
-                                body: body ? JSON.stringify(body) : undefined,
-                            })];
+                    case 0: return [4 /*yield*/, isomorphic_fetch_1.default(this.url(path, queryString), {
+                            headers: exports.headers,
+                            credentials: 'include',
+                            method: 'post',
+                            body: body ? JSON.stringify(body) : undefined,
+                        })];
                     case 1:
                         response = _c.sent();
                         return [4 /*yield*/, this.parseResponse(response)];

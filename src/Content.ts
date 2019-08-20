@@ -31,7 +31,7 @@ export default class ContentAPI {
     const response: UploadResponse = await this.client.post('/content/upload', {
       queryString: {
         documentType,
-        batchId,
+        batch: batchId,
       },
       body: {
         items: items.map(item => ({

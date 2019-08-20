@@ -58,7 +58,7 @@ var ContentAPI = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.client.post('/content/upload', {
                             queryString: {
                                 documentType: documentType,
-                                batchId: batchId,
+                                batch: batchId,
                             },
                             body: {
                                 items: items.map(function (item) { return (__assign({}, item, { date: item.date.toISOString() })); }),
